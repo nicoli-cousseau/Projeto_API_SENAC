@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Completo Node.js</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { margin-bottom: 20px; background: #f4f4f4; padding: 15px; border-radius: 5px; }
+        input { margin: 5px; padding: 8px; }
+        button { padding: 8px 15px; cursor: pointer; margin-left: 5px; }
+        .btn-excluir { background-color: #ff4d4d; color: white; border: none; }
+        .btn-editar { background-color: #ffae19; color: white; border: none; }
+        ul { list-style-type: none; padding: 0; }
+        li { padding: 10px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+
+    <h1>Gerenciador de Produtos</h1>
+
+    <!-- Formulário Único para Criar e Editar -->
+    <form id="form-produto">
+        <h3 id="form-titulo">Adicionar Produto</h3>
+        <input type="hidden" id="produto-id"> <!-- Campo invisível para guardar o ID na edição -->
+        <input type="text" id="nome" placeholder="Nome do produto" required>
+        <input type="text" id="preco" placeholder="Preço" required>
+        <button type="submit" id="btn-salvar">Adicionar</button>
+        <button type="button" id="btn-cancelar" style="display: none;" onclick="resetarFormulario()">Cancelar</button>
+    </form>
+
+    <h2>Lista de Produtos</h2>
+    <ul id="lista-produtos"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
