@@ -5,9 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+
 <body>
-    <h1 id="Mensagem"></h1>
-    <h3 id="Atividade_Back-End"></h3>
+
+    <h1>Cadastro de usuários</h1>
+    <section>
+        <h3>Novo usuário</h3>
+        <form id="formUsuario">
+            <input type="hiden" id="usuarioID" style="display:none">
+            <div>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" placeholder="Digite o nome" required>
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Digite o email" required>
+            </div>
+            <div>
+                <button type="submit" id="botaoSalvar">Cadastrar</button>
+            </div>
+        </form>
+    </section>
+
+    <section>
+        <h3>Usuários Cadastrados</h3>
+        <div id="mensagem"></div>
+        <table>
+            <thead>
+                <tr>
+                    <tr>ID</tr>
+                    <tr>Nome</tr>
+                    <tr>Email</tr>
+                </tr>
+            </thead>
+            <tbody id="listaUsuarios"></tbody>
+        </table>
+    </section>
+
     <script src="script2.js"></script>
 </body>
 </html>

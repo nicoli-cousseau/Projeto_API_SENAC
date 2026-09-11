@@ -1,19 +1,36 @@
-const mensagem = document.getElementById("Mensagem");
-const backend = document.getElementById("Atividade_Back-End");
+const API_URL = 'http://localhost:3001/api/usuarios';
 
-async function UC4 () {
+const listaUsuarios = document.getElementById ('listaUsuarios');
+
+const form = document.getElementById("formUsuario");
+const nomeInput = document.getElementById("nome");
+const emailInput = document.getElementById("email");
+const botaoSalvar = document.getElementById("botaoSalvar");
+
+// Listar usuários.
+async function carregarUsuarios () {
     try {
-        const res = await fetch('http://localhost:3000/api/mensagem');
-        if (!res.ok) 
+        const resposta = await fetch(API_URL);
+        if (!resposta.ok) 
             {throw new Error ("Erro HTTP ${res.status}");}
 
-        const data = await res.json ();
-        backend.innerHTML = data.description;
-        mensagem.innerHTML= data.mensagem;        
+        const data = await resposta.json ();
+
+        listaUsuarios.innerHTML = "";
+
+        data.forEach(usuario => {
+            const linha = document.createElement("tr");
+
+            linha.innerHTML = `<td>$(usuario.id)</td><td>$(usuario.nome)</td><td>$(usuario.email)</td>`;
+
+            listaUsuarios.appendChild(linha);
+        })
+
     }
     catch (erro){
         console.error('Erro:', erro);
     }
 }
 
-UC4();                                                         
+// Inicia já com nossa listagem.
+carregarUsuarios();                                                         
