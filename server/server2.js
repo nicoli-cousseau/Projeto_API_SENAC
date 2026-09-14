@@ -4,7 +4,7 @@ const fs = require ('fs'); //Inserimos edução de arquivos.
 
 const app = express(); // Definimos o app para utilizar o express().
 
-const PORT = 3000; // Definimos a porta do Back.
+const PORT = 3001; // Definimos a porta do Back.
 const ARQUIVO = "./dados.json"; // Definimos o arquivo em que os dados serão persistidos. 
 
 app.use(cors()); // Ativamos o app para usar o cors.
@@ -27,7 +27,7 @@ app.get('/api/usuarios', (req, res) => {
 });
 
 // POST: criar.
-app.post('api/usuarios', (req, res) => {
+app.post('/api/usuarios', (req, res) => {
     const {nome, email} = req.body; // Leitura da req do body.
 
     if  (!nome || !email) { // Valida campo para não vir vazio. 
