@@ -19,9 +19,22 @@ app.use(express.json()); // Ativamos o app para utilizar estruturas json.
  function salvarUsuarios(usuarios){
     fs.writeFileSync(ARQUIVO, JSON.stringify(usuarios, null, 2)); // Null e 2: para quebrar a linha e ficar visualmente melhor. 
  }
+//  GET: Por ID.
+app.get('/api/usuarios/:id', (req, res) => {
+    const usuarios = leituraUsuarios();
+    const id = Number(req.params.id);
+    const usuario = usuarios.find(usuario => usuario.id === id);
+    if (!usuario) {
+        return res.status(404).json({
+            mensagem: "Usuário não encontrado"
+        });
+        
+    }
+    res.json(usuario);
+});
 
-//  GET: Listar todos. 
-app.get('/api/usuarios', (req, res) => {
+//  GET: Por todos.
+app.get('/api/usuarios/', (req, res) => {
     const usuarios = leituraUsuarios();
     res.json(usuarios);
 });
@@ -44,6 +57,23 @@ app.post('/api/usuarios', (req, res) => {
 
     res.status(201).json(novoUsuario); // Retorna sucesso ao criar novo usuário.
 });
+
+// PUT: Editar.
+app.put('/api/usuarios/:id', (req, res) => {
+    const {nome, email} = req.body; // Pega a informação do corpo da requisição.
+    const usuarios = leituraUsuarios();
+    const id = NaNumber(req.params.id);
+    
+    const usuario = usuarios.find( usuario => usuario.id === id);
+    // Find vai procuarar na função se usuário id é igual em tipo e valor do id passado pelo front. 
+    usuario.nome = nome;
+    usuario.email = email;
+
+    salvarUsuarios(usuarios);
+
+    res.json(usuario);
+
+})
 
 app.listen(PORT, () => {
     console.log(`Servidor atualizado em http://localhost:${PORT}`);
