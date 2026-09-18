@@ -26,7 +26,7 @@ app.get('/api/usuarios', (req, res) => {
     res.json(usuarios);
 });
 
-//  GET: Por ID.
+//  GET: Por ID (buscar).
 app.get('/api/usuarios/:id', (req, res) => {
     const usuarios = leituraUsuarios();
     const id = Number(req.params.id);
@@ -61,7 +61,7 @@ app.post('/api/usuarios', (req, res) => {
     res.status(201).json(novoUsuario); // Retorna sucesso ao criar novo usuário.
 });
 
-// PUT: Editar.
+// PUT: Editar UPDATE.
 app.put('/api/usuarios/:id', (req, res) => {
     const {nome, email} = req.body; // Pega a informação do corpo da requisição.
     const usuarios = leituraUsuarios();
@@ -76,6 +76,23 @@ app.put('/api/usuarios/:id', (req, res) => {
 
     res.json(usuario);
 
+})
+
+// Delete - excluir.
+app.delete("/api/usuarios/:id", (req, res) => {
+    let usuarios = leituraUsuarios();
+    const id = Number(req.params.id);
+
+    const usuarioExiste = usuarios.some(usuario => usuario.id === id); // Verifica o id e retorna true se existe.
+
+    if (!usuarioExiste){
+        return res.status(404).json({mensagem: "Usuário não existe"});
+    }
+
+    usuarios = usuarios.filter(usuario => usuario.id !== id); // Pega a lista de todos os usuários diferentes do selecionado. 
+    salvarUsuarios(usuarios);
+
+    res.status(204).send();
 })
 
 app.listen(PORT, () => {

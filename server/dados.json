@@ -1,27 +1,12 @@
 [
   {
-    "id": 123456,
-    "nome": "teste",
-    "email": "teste@teste.com"
-  },
-  {
-    "id": 1789415436383,
-    "nome": "Nicoli",
-    "email": "nicoli@hotmail.com"
-  },
-  {
-    "id": 1789587734851,
-    "nome": "Arthur",
-    "email": "Arthur@hotmail.com"
-  },
-  {
-    "id": 1789587840069,
-    "nome": "testeEEE",
-    "email": "testeNovo@teste.com"
-  },
-  {
     "id": 1789755177394,
     "nome": "Nicoli",
-    "email": "testeNovo@teste.com1"
+    "email": "testeNovo@teste.com11"
+  },
+  {
+    "id": 1789755788976,
+    "nome": "teste4",
+    "email": "teste4@teste4"
   }
 ]

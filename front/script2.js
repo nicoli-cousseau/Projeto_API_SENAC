@@ -7,6 +7,7 @@ const usuarioIdInput = document.getElementById("usuarioID");
 const nomeInput = document.getElementById("nome");
 const emailInput = document.getElementById("email");
 const botaoSalvar = document.getElementById("botaoSalvar");
+const mensagem = document.getElementById("mensagem");
 
 // Listar usuários.
 async function carregarUsuarios () {
@@ -84,6 +85,23 @@ async function editarUsuario(id) {
     nomeInput.value = usuario.nome;
     emailInput.value = usuario.email;
     botaoSalvar.innerHTML = "Salvar alterações";
+}
+
+async function excluirUsuario(id){
+    const confirmar = confirm("Deseja excluir mesmo este usuário?");
+    if (!confirmar){
+        return;
+    }
+    await fetch(`${API_URL}/${id}`, {
+        method: "DELETE"
+    });
+    mostrarMensagem("Usuário excluido com sucesso!");
+    carregarUsuarios();
+}
+
+function mostrarMensagem(texto){
+    mensagem.innerHTML = `${texto}`;
+    setTimeout(() => {mensagem.innerHTML = ""}, 3000);
 }
 
 // Inicia já com nossa listagem.
